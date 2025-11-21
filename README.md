@@ -6,7 +6,7 @@ A lightweight Laravel package for logging model activities (create, update, dele
 [![Forks](https://img.shields.io/github/forks/raihanafroz/activitylog?style=flat-square)](https://github.com/raihanafroz/activitylog/network/members)
 [![Stars](https://img.shields.io/github/stars/raihanafroz/activitylog?style=flat-square)](https://github.com/raihanafroz/activitylog/stargazers)
 [![Total Downloads](https://img.shields.io/packagist/dt/rast/activity-log?style=flat-square)](https://packagist.org/packages/rast/activity-log)
-[![License](https://poser.pugx.org/rast/activity-log/license.svg)](https://packagist.org/packages/rast/activity-log)<br />
+[![License](https://poser.pugx.org/rast/activitylog/license.svg)](https://packagist.org/packages/rast/activitylog)<br />
 [![Latest Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)]()
 [![Laravel](https://img.shields.io/badge/Laravel-12+-red?style=for-the-badge)]()
 [![PHP](https://img.shields.io/badge/PHP-8.0+-777BB4?style=for-the-badge)]()
