@@ -6,10 +6,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class ActivityLogServiceProvider extends ServiceProvider
-{
-  public function boot()
-  {
+class ActivityLogServiceProvider extends ServiceProvider {
+  public function boot() {
     $this->cleanupOldLogs();
 
     if ($this->app->runningInConsole()) {
@@ -19,16 +17,14 @@ class ActivityLogServiceProvider extends ServiceProvider
     }
 
 
-
     // Load views from package
-    $this->loadViewsFrom(__DIR__.'/resources/views', 'activity-log');
+    $this->loadViewsFrom(__DIR__ . '/resources/views', 'activity-log');
 
     // Register routes
     $this->registerRoutes();
   }
 
-  public function register()
-  {
+  public function register() {
     $this->mergeConfigFrom(__DIR__ . '/../config/activitylog.php', 'activitylog');
 
     $this->app->singleton('activitylog', function () {
@@ -37,39 +33,38 @@ class ActivityLogServiceProvider extends ServiceProvider
   }
 
 
-  protected function registerRoutes() : void
-  {
+  protected function registerRoutes(): void {
     Route::middleware('web')
       ->prefix('activity-log')
       ->group(__DIR__ . '/routes/web.php');
   }
-  protected function cleanupOldLogs()
-  {
+
+  protected function cleanupOldLogs() {
     $days = config('activitylog.days', 30);
 
-    Log::debug("Cleaning up old logs older than $days days");
+    //Log::debug("Cleaning up old logs older than $days days");
 
     // Get the log folder dynamically
     $logPath = config('logging.channels.activity.path');
 
-    Log::debug("Log path: $logPath");
+    //Log::debug("Log path: $logPath");
     $directory = dirname($logPath);
 
-    Log::debug("Directory: $directory");
+    //Log::debug("Directory: $directory");
 
     if (!is_dir($directory)) {
-      Log::debug("Directory does not exist: $directory");
+      //Log::debug("Directory does not exist: $directory");
       return;
     }
     // Extract prefix from file name (activity.log → activity)
     $filename = basename($logPath);
-    Log::debug("Filename: $filename");
+    //Log::debug("Filename: $filename");
     $prefix = pathinfo($filename, PATHINFO_FILENAME);
 
-    Log::debug("Prefix: $prefix");
+    //Log::debug("Prefix: $prefix");
 
-    foreach (glob($directory . '/'.$prefix.'-*.log') as $file) {
-      Log::debug("Checking file: $file");
+    foreach (glob($directory . '/' . $prefix . '-*.log') as $file) {
+      //Log::debug("Checking file: $file");
       $modified = filemtime($file);
 
       if ($modified < now()->subDays($days)->timestamp) {
@@ -77,7 +72,6 @@ class ActivityLogServiceProvider extends ServiceProvider
       }
     }
   }
-
 
 
 }
