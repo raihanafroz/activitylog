@@ -39,7 +39,7 @@ class ActivityLogServiceProvider extends ServiceProvider {
       ->group(__DIR__ . '/routes/web.php');
   }
 
-  protected function cleanupOldLogs() {
+  protected function cleanupOldLogs():void {
     $days = config('activitylog.days', 30);
 
     //Log::debug("Cleaning up old logs older than $days days");
