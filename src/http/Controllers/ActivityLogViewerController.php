@@ -45,6 +45,11 @@ class ActivityLogViewerController extends Controller
       }
     }
 
+    usort($logs, function($a, $b) {
+      return strtotime($b['time']) - strtotime($a['time']);
+    });
+
+
     return view('activity-log::index', compact('logs', 'date', 'search', 'action'));
   }
 }
