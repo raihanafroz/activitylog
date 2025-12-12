@@ -18,6 +18,8 @@ class RastActivityLog
     // Only log if enabled in config
     if (config('activitylog.enabled', false)) {
       $channel = config('activitylog.channel', 'activity');
+      $context['time'] = now()->toDateTimeString();
+      $context['ip'] = request()->ip();
       Log::channel($channel)->info($message, $context);
     }
   }
