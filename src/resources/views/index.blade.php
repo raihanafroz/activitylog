@@ -32,7 +32,7 @@
           <thead class="table-dark">
           <tr>
             <th>#</th>
-            <th>Model / Action</th>
+            <th>Model / Action <br>Time <br>IP</th>
             <th>Record ID</th>
             <th>User ID</th>
             <th>Data / Changes</th>
@@ -48,7 +48,7 @@
             @endphp
             <tr class="{{ $bgColor }}">
               <td>{{ $index + 1 }}</td>
-              <td>{{ ($log['model'] ?? '') . ' / ' . ($log['action'] ?? '') }}</td>
+              <td>{{ ($log['model'] ?? '') . ' / ' . ($log['action'] ?? '') }}<br>{{ \Carbon\Carbon::parse($log['time'])->format('d M Y, h:i A') }}<br>{{ $log['ip'] }}</td>
               <td>{{ $log['id'] ?? 'N/A' }}</td>
               <td>{{ $log['user_id'] ?? 'N/A' }}</td>
               <td>
